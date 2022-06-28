@@ -11,21 +11,25 @@ export default function App(){
     /*get width from dimension*/
     const width=Dimensions.get('window').width;
 
-    /*aleart events*/
     const [newTask,setNewTask]=useState('');
 
     const _addTask=()=>{
-        alert(`Add: ${newTask}`);
+        alert(`Add: ${newTask}`); //alert events
         const ID=Date.now().toString();
-        const newTaskObject={[ID]:{id:ID,text:newTask,completed:false},};
+        const newTaskObject={[ID]:{id:ID,text:newTask,completed:false},}; 
         setNewTask('');
         setTasks({...tasks,...newTaskObject});
+    };
+
+    const _deleteTask=id=>{
+        const currentTasks=Object.assign({},tasks);
+        delete currentTasks[id];
+        setTasks(currentTasks);
     };
 
     const _handleTextChange = text => {
         setNewTask(text);
     };
-    /*aleart events*/
 
     /*add task*/
     const [tasks,setTasks]=useState({
@@ -41,7 +45,9 @@ export default function App(){
             <Text style={textStyles.title}>Walk Goyang</Text>
             <Input value={newTask} onChangeText={_handleTextChange} onSubmitEditing={_addTask}/>
             <View width={width-30}>
-                {Object.values(tasks).reverse().map(item=>(<Task key={item.id} text={item.text}/>))}
+                {Object.values(tasks).reverse().map(item=>(
+                <Task key={item.id} item={item} deleteTask={_deleteTask}/>
+                ))}
             </View>
         </SafeAreaView>
     );
