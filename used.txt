@@ -1,0 +1,18 @@
+//todoapp1
+npm install prop-types
+
+//todoapp2
+npm -g install react-native
+react-native --version
+npm i -g npm-upgrade
+expo install @react-native-async-storage/async-storage
+
+//hooks
+
+//stack navigation
+expo init my-navigation
+cd my-navigation/node_modules
+npm install styled-components
+npm install @react-navigation/native
+npm install @react-navigation/native-stack
+expo install react-native-screens react-native-safe-area-contex
